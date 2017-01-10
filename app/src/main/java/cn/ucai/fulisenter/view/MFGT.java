@@ -13,4 +13,7 @@ public class MFGT  {
         context.startActivity(new Intent(context,clz));
     }
 
+    public static void finshActivity(Activity context) {
+        context.finish();
+    }
 }

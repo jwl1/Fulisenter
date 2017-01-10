@@ -1,4 +1,4 @@
-package cn.ucai.fulisenter.model;
+package cn.ucai.fulisenter.controller.activity;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 MFGT.startActivity(SplashActivity.this, MainActivity.class);
-
+                MFGT.finshActivity(SplashActivity.this);
             }
         },2000);
     }

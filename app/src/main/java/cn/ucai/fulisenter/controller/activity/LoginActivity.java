@@ -1,4 +1,4 @@
-package cn.ucai.fulisenter.model;
+package cn.ucai.fulisenter.controller.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

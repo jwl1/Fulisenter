@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".model.SplashActivity" >
+        <activity android:name=".controller.activity.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".model.MainActivity" />
-        <activity android:name=".model.LoginActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".controller.activity.LoginActivity" />
+        <activity android:name=".controller.activity.MainActivity" />
 
 
     </application>
