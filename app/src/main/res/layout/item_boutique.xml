@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp">
+
+    <ImageView
+        android:id="@+id/ivBoutique"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/nopic" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/ivBoutique"
+        android:background="#e3f5e3"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvBoutique1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="不一样的护发素"
+            android:textColor="#e11789"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tvBoutique2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="拯救头发"
+            android:textColor="#3b88da"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvBoutique3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="拯救头发"
+            android:textColor="#080808"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</RelativeLayout>
