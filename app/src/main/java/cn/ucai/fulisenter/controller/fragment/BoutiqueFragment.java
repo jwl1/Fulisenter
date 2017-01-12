@@ -1,4 +1,4 @@
-package cn.ucai.fulicenter.controller.fragment;
+package cn.ucai.fulisenter.controller.fragment;
 
 
 import android.os.Bundle;
@@ -6,130 +6,126 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import cn.ucai.fulisenter.R;
 import cn.ucai.fulisenter.controller.adapter.BoutiqueAdapter;
+import cn.ucai.fulisenter.controller.application.I;
 import cn.ucai.fulisenter.model.bean.BoutiqueBean;
-
-import cn.ucai.fulisenter.model.net.IModelNewBoutique;
-
+import cn.ucai.fulisenter.model.net.IModelBoutique;
 import cn.ucai.fulisenter.model.net.ModelBoutique;
-
-import cn.ucai.fulisenter.model.net.OnCompleteListener;
-
-import cn.ucai.fulisenter.model.ustils.ConvertUtils;
-import cn.ucai.fulisenter.view.SpaceItemDecoration;
+import cn.ucai.fulisenter.model.net.OnCompletionListener;
+import cn.ucai.fulisenter.model.utils.ConvertUtils;
+import cn.ucai.fulisenter.model.utils.L;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BoutiqueFragment extends Fragment {
-    static final int ACTION_DOWNLOAD = 0;//下载首页
-    static final int ACTION_PULL_DOWN = 1;//下拉刷新
+    @BindView(R.id.srlBoutique)
+    SwipeRefreshLayout srlBoutique;
+    @BindView(R.id.tv_nomore)
+    TextView tvNomore;
+    @BindView(R.id.tvRefreshHint)
+    TextView tvRefreshHint;
+    @BindView(R.id.rvBoutique)
+    RecyclerView rvBoutique;
 
-    @BindView(R.id.tvRefresh)
-    TextView tvRefresh;
-    @BindView(R.id.mRw)
-    RecyclerView mRw;
-    @BindView(R.id.srl)
-    SwipeRefreshLayout srl;
+    Unbinder unbinder;
 
-    LinearLayoutManager gm;
+    IModelBoutique mModel;
     BoutiqueAdapter mAdapter;
-    ArrayList<BoutiqueBean> mList = new ArrayList<>();
-    IModelNewBoutique mModel;
-    int pageId = 1;
+    LinearLayoutManager mLayoutManager;
+    ArrayList<BoutiqueBean> mArryList;
+
+
 
     public BoutiqueFragment() {
         // Required empty public constructor
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_boutique, container, false);
-        ButterKnife.bind(this, layout);
-        initView();
-        mModel = new ModelBoutique();
-        initData();
+        unbinder = ButterKnife.bind(this, layout);
+        Log.e("main", "lay");
+        initView(layout);
+        L.e("main", "initView");
+        iniData(I.ACTION_DOWNLOAD);
+        L.e("main", "inidatafinsh");
         setListener();
         return layout;
     }
 
     private void setListener() {
-        setPullDownListener();
-    }
-
-
-    //下拉
-    private void setPullDownListener() {
-        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        srlBoutique.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                srl.setRefreshing(true);
-                tvRefresh.setVisibility(View.VISIBLE);
-                pageId = 1;
-                downloadContactLiset(ACTION_PULL_DOWN, pageId);
+                srlBoutique.setRefreshing(true);
+                tvRefreshHint.setVisibility(View.VISIBLE);
+                iniData(I.ACTION_PULL_DOWN);
             }
         });
     }
 
-    private void initData() {
-        pageId = 1;
-        downloadContactLiset(ACTION_DOWNLOAD, pageId);
-    }
-
-    private void downloadContactLiset(final int action, int PageId) {
-        mModel.downData(getContext(), new OnCompleteListener<BoutiqueBean[]>() {
+    private void iniData(final int action) {
+        mModel.downloadBoutiqueList(getContext(), new OnCompletionListener<BoutiqueBean[]>() {
             @Override
             public void onSuccess(BoutiqueBean[] result) {
-                ArrayList<BoutiqueBean> list = ConvertUtils.array2List(result);
-                switch (action) {
-                    case ACTION_DOWNLOAD:
+                srlBoutique.setRefreshing(false);
+                tvRefreshHint.setVisibility(View.GONE);
+                L.e("main", result.length + "");
+                if (result != null && result.length > 0) {
+                    ArrayList<BoutiqueBean> list = ConvertUtils.array2List(result);
+                    if (action == I.ACTION_DOWNLOAD || action == I.ACTION_PULL_DOWN) {
                         mAdapter.initData(list);
-                        break;
-                    case ACTION_PULL_DOWN:
-                        srl.setRefreshing(false);
-                        tvRefresh.setVisibility(View.GONE);
-                        mAdapter.initData(list);
-                        break;
+                    } else {
+                        mAdapter.addData(list);
+                    }
+                } else {
+                    rvBoutique.setVisibility(View.GONE);
+                    tvNomore.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onError(String error) {
+                Log.e("main", "gg");
                 Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-
             }
-
         });
-
     }
 
-
-    private void initView() {
-        srl.setColorSchemeColors(
-                getResources().getColor(R.color.google_blue),
-                getResources().getColor(R.color.google_green),
-                getResources().getColor(R.color.google_yellow),
-                getResources().getColor(R.color.google_red));
-        gm = new LinearLayoutManager(getContext());
-        mRw.setLayoutManager(gm);
-        mRw.setHasFixedSize(true);
-        mAdapter = new BoutiqueAdapter(getContext(), mList);
-        mRw.setAdapter(mAdapter);
-        mRw.addItemDecoration(new SpaceItemDecoration(20));
+    private void initView(View layout) {
+        mModel = new ModelBoutique();
+        mArryList = new ArrayList<>();
+        mAdapter = new BoutiqueAdapter(getContext(), mArryList, mModel);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        rvBoutique.setLayoutManager(mLayoutManager);
+        rvBoutique.setAdapter(mAdapter);
+    }
+    @OnClick(R.id.tv_nomore)
+    public void onClick() {
+        L.e("main", "onclick");
+        iniData(I.ACTION_DOWNLOAD);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

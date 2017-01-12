@@ -1,36 +1,27 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/srlNewGoods"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="cn.ucai.fulisenter.controller.fragment.NewGoodsFragment">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/srl"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#dae2da">
+        android:orientation="vertical">
 
-        <LinearLayout
-
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tvRefreshHint"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="刷新中。。。。"
+            android:gravity="center_horizontal"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tvRefresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="正在刷新"
-                android:textColor="#d710da"
-                android:textSize="20sp"
-                android:visibility="gone" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/mRw"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-    </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvNewGoods"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

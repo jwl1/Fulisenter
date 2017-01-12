@@ -1,7 +1,7 @@
 package cn.ucai.fulisenter.model.bean;
 
 
-import cn.ucai.fulisenter.application.I;
+import cn.ucai.fulisenter.controller.application.I;
 
 /**
  * Created by clawpo on 2016/10/21.

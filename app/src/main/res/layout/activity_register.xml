@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="cn.ucai.fulisenter.controller.activity.RegisterActivity"
+    android:background="@drawable/ease_timestampe_bg"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="账户注册"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            />
+        <ImageView
+            android:src="@drawable/back"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#fff"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="fill_vertical"
+        android:background="#fff">
+        <TextView
+            android:text="用户名"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp" />
+        <EditText
+            android:id="@+id/et_UserName"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="30dp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="fill_vertical"
+        android:background="#fff">
+        <TextView
+            android:text="昵称"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp" />
+        <EditText
+            android:id="@+id/et_Nick"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="30dp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="fill_vertical"
+        android:background="#fff">
+        <TextView
+            android:text="密码"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp" />
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="30dp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="fill_vertical"
+        android:background="#fff">
+        <TextView
+            android:text="确认密码"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp" />
+        <EditText
+            android:id="@+id/et_confirmpassword"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="30dp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="fill_vertical"
+        android:background="#fff">
+        <TextView
+            android:text="头像"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="30dp" />
+
+        <ImageView
+            android:id="@+id/iv_UserAvatar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:src="@drawable/tb_btn_login_orange_normal"/>
+    </LinearLayout>
+
+</LinearLayout>

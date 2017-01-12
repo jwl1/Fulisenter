@@ -101,20 +101,4 @@ public class CollectBean implements Serializable {
                 ", addTime=" + addTime +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CollectBean)) return false;
-
-        CollectBean that = (CollectBean) o;
-
-        return getGoodsId() == that.getGoodsId();
-
-    }
-
-    @Override
-    public int hashCode() {
-        return getGoodsId();
-    }
 }
