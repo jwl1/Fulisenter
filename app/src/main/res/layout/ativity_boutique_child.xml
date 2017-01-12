@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_boutique_child"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.ucai.fulisenter.controller.activity.BoutiqueChildActivity">
+    <RelativeLayout
+        android:background="@color/orange"
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@drawable/back"
+            android:layout_width="25dp"
+            android:layout_height="35dp" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/back"
+            android:gravity="center_vertical"
+            android:text="title"/>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/fl_Boutique_Child"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl"/>
+</RelativeLayout>

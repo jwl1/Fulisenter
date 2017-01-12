@@ -8,7 +8,7 @@ import android.widget.RadioButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.ucai.fulisenter.controller.fragment.BoutiqueFragment;
+import cn.ucai.fulicenter.controller.fragment.BoutiqueFragment;
 import cn.ucai.fulisenter.controller.fragment.NewGoodsFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

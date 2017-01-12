@@ -1,4 +1,4 @@
-package cn.ucai.fulisenter.controller.fragment;
+package cn.ucai.fulicenter.controller.fragment;
 
 
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -19,9 +20,13 @@ import butterknife.ButterKnife;
 import cn.ucai.fulisenter.R;
 import cn.ucai.fulisenter.controller.adapter.BoutiqueAdapter;
 import cn.ucai.fulisenter.model.bean.BoutiqueBean;
+
 import cn.ucai.fulisenter.model.net.IModelNewBoutique;
+
 import cn.ucai.fulisenter.model.net.ModelBoutique;
+
 import cn.ucai.fulisenter.model.net.OnCompleteListener;
+
 import cn.ucai.fulisenter.model.ustils.ConvertUtils;
 import cn.ucai.fulisenter.view.SpaceItemDecoration;
 
