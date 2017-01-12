@@ -24,16 +24,16 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
     private static final int TYPE_FOOTER = 1;
     Context mContext;
     ArrayList<BoutiqueBean> mList;
-    boolean isMore;
+   //
 
-    public boolean isMore() {
-        return isMore;
-    }
+    //public boolean isMore() {
+   //     return isMore;
+   // }
 
-    public void setMore(boolean more) {
-        isMore = more;
-        notifyDataSetChanged();
-    }
+   // public void setMore(boolean more) {
+   //     isMore = more;
+  //      notifyDataSetChanged();
+  //  }
 
     String footer;
     boolean isDragging;
