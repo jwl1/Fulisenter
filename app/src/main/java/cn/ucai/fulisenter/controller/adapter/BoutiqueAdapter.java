@@ -1,7 +1,6 @@
 package cn.ucai.fulisenter.controller.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulisenter.R;
-import cn.ucai.fulisenter.application.I;
-import cn.ucai.fulisenter.controller.activity.BoutiqueChildActivity;
 import cn.ucai.fulisenter.model.bean.BoutiqueBean;
 import cn.ucai.fulisenter.model.ustils.ImageLoader;
+import cn.ucai.fulisenter.view.MFGT;
 
 /**
  * Created by MTJ on 2017/1/11.
@@ -94,12 +92,10 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
         holder1.tvBoutique1.setText(mList.get(position).getName());
         holder1.tvBoutique2.setText(mList.get(position).getTitle());
         holder1.tvBoutique3.setText(mList.get(position).getDescription());
-        holder1.itemView.setOnClickListener(new View.OnClickListener(){
+       holder1.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-          mContext.startActivity(new Intent(mContext, BoutiqueChildActivity.class)
-          .putExtra(I.NewAndBoutiqueGoods.CAT_ID,mList.get(position).getId()));
-
+                MFGT.gotoBoutiqueChild(mContext, mList.get(position));
 
             }
         });
@@ -148,6 +144,16 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
             ButterKnife.bind(this, view);
 
         }
+
+       // @OnClick(R.id.tvBoutique3)
+       // public void onClick() {
+        //    MFGT.gotoBoutqueChila();
+
+         //   mContext.startActivity(new Intent(mContext, BoutiqueChildActivity.class)
+        //        .putExtra(I.NewAndBoutiqueGoods.CAT_ID,mList.get(position).getId())
+        //        .putExtra(I.Boutique.NAME,mList.get(position).getTit
+
+      //  }
     }
 
     static class FooterViewHolder extends RecyclerView.ViewHolder {
