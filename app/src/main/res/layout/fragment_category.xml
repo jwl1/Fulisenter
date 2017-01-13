@@ -1,14 +1,23 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<ExpandableListView
+    android:id="@+id/elv_category"
+    android:background="@color/list_background"
+    android:dividerHeight="8dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="cn.ucai.fulisenter.controller.fragment.CategoryFragment">
+    android:layout_height="wrap_content">
 
-    <!-- TODO: Update blank fragment layout -->
+
+
+</ExpandableListView>
+
     <TextView
-        android:text="分类"
-        android:textSize="30sp"
+        android:id="@+id/tv_nomore"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</FrameLayout>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/load_more"/>
+</LinearLayout>

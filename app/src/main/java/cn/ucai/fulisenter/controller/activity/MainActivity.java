@@ -14,11 +14,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.ucai.fulisenter.controller.fragment.CategroyFragment;
 import cn.ucai.fulisenter.controller.fragment.NewGoodsFragment;
 import cn.ucai.fulisenter.R;
 import cn.ucai.fulisenter.controller.fragment.BoutiqueFragment;
 import cn.ucai.fulisenter.controller.fragment.CartFragment;
-import cn.ucai.fulisenter.controller.fragment.CategoryFragment;
+
 import cn.ucai.fulisenter.controller.fragment.PersonalCenterFragment;
 import cn.ucai.fulisenter.model.utils.L;
 
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements
     NewGoodsFragment mNewGoodsFramgent;
     BoutiqueFragment mBoutiqueFragment;
     CartFragment mCartFragment;
-    CategoryFragment mCategoryFragment;
+    CategroyFragment mCategoryFragment;
     PersonalCenterFragment mPersonalCenterFragment;
 
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements
     private void initView() {
         mBoutiqueFragment = new BoutiqueFragment();
         mCartFragment = new CartFragment();
-        mCategoryFragment = new CategoryFragment();
+        mCategoryFragment = new  CategroyFragment ();
         mNewGoodsFramgent = new NewGoodsFragment();
         mPersonalCenterFragment = new PersonalCenterFragment();
         mFragment = new ArrayList<Fragment>();
