@@ -6,9 +6,9 @@ import android.app.Application;
  * Created by Administrator on 2017/1/10 0010.
  */
 
-public class FuLiCenterApplication extends Application {
-    private static FuLiCenterApplication intance;
-    public static FuLiCenterApplication getInstance(){
+public class FuLiSenterApplication extends Application {
+    private static FuLiSenterApplication intance;
+    public static FuLiSenterApplication getInstance(){
         return intance;
     }
     @Override

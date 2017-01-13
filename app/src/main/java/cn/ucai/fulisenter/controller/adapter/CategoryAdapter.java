@@ -29,10 +29,10 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     public CategoryAdapter(Context context, ArrayList<CategoryGroupBean> groupBeen, ArrayList<ArrayList<CategoryChildBean>> childBeen) {
         mContext = context;
         mGroupBeen = new ArrayList<>();
-        mGroupBeen.addAll(groupBeen);
+        mGroupBeen.addAll(mGroupBeen);
         mChildBeen = new ArrayList<>();
 
-        mChildBeen.addAll(mChildBeen);
+      mChildBeen.addAll(mChildBeen);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     @Override
     public int getChildrenCount(int groupPosition) {
         return mChildBeen != null && mChildBeen.get(groupPosition) != null ?
-                mChildBeen.get(groupPosition).size() : 0;
+               mChildBeen.get(groupPosition).size() : 0;
     }
 
     @Override
@@ -107,7 +107,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     public  void initData(ArrayList<CategoryGroupBean> groupBeen,
                           ArrayList<ArrayList<CategoryChildBean>>childBeen){
         mGroupBeen.clear();
-        mGroupBeen.addAll(mGroupBeen);
+        mGroupBeen.addAll(groupBeen);
         mChildBeen.clear();
         mChildBeen.addAll(mChildBeen);
         notifyDataSetChanged();
