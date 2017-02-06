@@ -10,13 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import cn.ucai.fulisenter.R;
 import cn.ucai.fulisenter.controller.activity.GoodsDetailsActivity;
 import cn.ucai.fulisenter.controller.application.I;
 import cn.ucai.fulisenter.model.bean.NewGoodsBean;
 import cn.ucai.fulisenter.model.net.IModelNewGoods;
-import cn.ucai.fulisenter.model.utils.L;
 
 /**
  * Created by Administrator on 2017/1/10 0010.
@@ -70,6 +71,37 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
         return isDragging;
     }
 
+    public void sortGoods(final int sortBy) {
+        Collections.sort(arrayList, new Comparator<NewGoodsBean>() {
+            @Override
+            public int compare(NewGoodsBean leftBean, NewGoodsBean rightBean) {
+                int result = 0;
+                switch (sortBy) {
+                    case I.SORT_BY_ADDTIME_ASC:
+                        result = (int) (leftBean.getAddTime() - rightBean.getAddTime());
+                        break;
+                    case I.SORT_BY_ADDTIME_DESC:
+                        result = (int) (rightBean.getAddTime() - leftBean.getAddTime());
+                        break;
+                    case I.SORT_BY_PRICE_ASC:
+                        result=getPrice(leftBean.getCurrencyPrice())-getPrice(rightBean.getCurrencyPrice());
+                        break;
+                    case I.SORT_BY_PRICE_DESC:
+                        result=getPrice(rightBean.getCurrencyPrice())-getPrice(leftBean.getCurrencyPrice());
+                        break;
+                }
+                return result;
+            }
+        });
+        notifyDataSetChanged();
+    }
+
+    int getPrice(String price) {
+        int p = 0;
+        p = Integer.valueOf(price.substring(price.indexOf("￥")+1)) ;
+     //   L.e("main","p="+p);
+        return p;
+    }
     public void setDragging(boolean dragging) {
         isDragging = dragging;
         notifyDataSetChanged();
@@ -111,7 +143,7 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 Intent intent  = new Intent(context, GoodsDetailsActivity.class);
                 intent.putExtra(I.GoodsDetails.KEY_GOODS_ID,arrayList.get(position).getGoodsId());
-                L.e("main","goodId"+arrayList.get(position).getGoodsId());
+             //   L.e("main","goodId"+arrayList.get(position).getGoodsId());
                 context.startActivity(intent);
             }
         });

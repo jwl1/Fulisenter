@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,6 @@ import cn.ucai.fulisenter.model.net.IModelBoutique;
 import cn.ucai.fulisenter.model.net.ModelBoutique;
 import cn.ucai.fulisenter.model.net.OnCompletionListener;
 import cn.ucai.fulisenter.model.utils.ConvertUtils;
-import cn.ucai.fulisenter.model.utils.L;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,11 +59,11 @@ public class BoutiqueFragment extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_boutique, container, false);
         unbinder = ButterKnife.bind(this, layout);
-        Log.e("main", "lay");
+       // Log.e("main", "lay");
         initView(layout);
-        L.e("main", "initView");
+       // L.e("main", "initView");
         iniData(I.ACTION_DOWNLOAD);
-        L.e("main", "inidatafinsh");
+       // L.e("main", "inidatafinsh");
         setListener();
         return layout;
     }
@@ -87,7 +85,7 @@ public class BoutiqueFragment extends Fragment {
             public void onSuccess(BoutiqueBean[] result) {
                 srlBoutique.setRefreshing(false);
                 tvRefreshHint.setVisibility(View.GONE);
-                L.e("main", result.length + "");
+              //  L.e("main", result.length + "");
                 if (result != null && result.length > 0) {
                     ArrayList<BoutiqueBean> list = ConvertUtils.array2List(result);
                     if (action == I.ACTION_DOWNLOAD || action == I.ACTION_PULL_DOWN) {
@@ -103,7 +101,7 @@ public class BoutiqueFragment extends Fragment {
 
             @Override
             public void onError(String error) {
-                Log.e("main", "gg");
+               // Log.e("main", "gg");
                 Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
             }
         });
@@ -119,7 +117,7 @@ public class BoutiqueFragment extends Fragment {
     }
     @OnClick(R.id.tv_nomore)
     public void onClick() {
-        L.e("main", "onclick");
+       // L.e("main", "onclick");
         iniData(I.ACTION_DOWNLOAD);
     }
 

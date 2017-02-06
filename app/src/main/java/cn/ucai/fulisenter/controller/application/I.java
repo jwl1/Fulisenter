@@ -57,6 +57,10 @@ public interface I {
     int CAT_ID=0;
     String BROADCAST_UPDATA_CART = "cn.ucai.fulicenter.update.cart";
     int CART_CHECKED_DEFAULT = 0;
+    String BROADCAST_UPDATA_COLLECT = "cn.ucai.fulicenter.update.collect";
+    int ACTION_CART_ADD =1 ;
+    int ACTION_CART_DEL=2 ;
+    int ACTION_CART_UPDATA=3 ;
 
     interface Goods {
         String KEY_RESULT = "result";
@@ -147,6 +151,7 @@ public interface I {
     interface CategoryChild extends CategoryGroup{
         String PARENT_ID="parent_id";
         String CAT_ID="catId";
+        String DATA = "category_child_data";
     }
 
     interface CategoryGood{

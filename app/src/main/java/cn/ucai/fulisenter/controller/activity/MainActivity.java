@@ -14,17 +14,19 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.ucai.fulisenter.controller.fragment.CategroyFragment;
-import cn.ucai.fulisenter.controller.fragment.NewGoodsFragment;
 import cn.ucai.fulisenter.R;
+import cn.ucai.fulisenter.controller.application.FuLiCenterApplication;
 import cn.ucai.fulisenter.controller.fragment.BoutiqueFragment;
 import cn.ucai.fulisenter.controller.fragment.CartFragment;
-
+import cn.ucai.fulisenter.controller.fragment.CategoryFragment;
+import cn.ucai.fulisenter.controller.fragment.NewGoodsFragment;
 import cn.ucai.fulisenter.controller.fragment.PersonalCenterFragment;
 import cn.ucai.fulisenter.model.utils.L;
+import cn.ucai.fulisenter.view.MFGT;
 
 public class MainActivity extends AppCompatActivity implements
         RadioGroup.OnCheckedChangeListener {
+    private static final String TAG = MainActivity.class.getSimpleName();
     Context mContext;
     @BindView(R.id.rg_footer)
     RadioGroup rgFooter;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements
     NewGoodsFragment mNewGoodsFramgent;
     BoutiqueFragment mBoutiqueFragment;
     CartFragment mCartFragment;
-    CategroyFragment mCategoryFragment;
+    CategoryFragment mCategoryFragment;
     PersonalCenterFragment mPersonalCenterFragment;
 
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements
     private void initView() {
         mBoutiqueFragment = new BoutiqueFragment();
         mCartFragment = new CartFragment();
-        mCategoryFragment = new  CategroyFragment ();
+        mCategoryFragment = new CategoryFragment();
         mNewGoodsFramgent = new NewGoodsFragment();
         mPersonalCenterFragment = new PersonalCenterFragment();
         mFragment = new ArrayList<Fragment>();
@@ -90,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements
 
             }
         });
-        fragmentVp.setCurrentItem(1);
+        fragmentVp.setCurrentItem(0);
         ((RadioButton)rgFooter.getChildAt(index)).setChecked(true);
     }
 
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             case  R.id.rb_Boutique:
                 index = 1;
-                L.e("main","Botique");
+                //L.e("main","Botique");
                 break;
             case R.id.rb_Category:
                 index = 2;
@@ -111,6 +113,9 @@ public class MainActivity extends AppCompatActivity implements
                 index = 3;
                 break;
             case  R.id.rb_Personal_center:
+                if (FuLiCenterApplication.getUser() == null) {
+                   MFGT.gotoLogin(this);
+                }
                 index = 4;
                 break;
         }
@@ -119,5 +124,13 @@ public class MainActivity extends AppCompatActivity implements
         }
         fragmentVp.setCurrentItem(index);
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        L.e(TAG,"onResume,currentIndex="+currentindex+",index="+index
+        +",user="+FuLiCenterApplication.getUser());
+       fragmentVp.setCurrentItem(index);
+    }
+
 
 }

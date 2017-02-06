@@ -18,7 +18,6 @@ import cn.ucai.fulisenter.controller.activity.BoutiqueChildActivity;
 import cn.ucai.fulisenter.controller.application.I;
 import cn.ucai.fulisenter.model.bean.BoutiqueBean;
 import cn.ucai.fulisenter.model.net.IModelBoutique;
-import cn.ucai.fulisenter.model.utils.L;
 
 /**
  * Created by Administrator on 2017/1/11 0011.
@@ -69,13 +68,13 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.Boutiq
             bqList.clear();
         }
         bqList.addAll(list);
-        L.e("main", "initData");
+       // L.e("main", "initData");
         notifyDataSetChanged();
     }
 
     public void addData(ArrayList<BoutiqueBean> list) {
         bqList.addAll(list);
-        L.e("main", "addData");
+      //  L.e("main", "addData");
         notifyDataSetChanged();
     }
 

@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +21,11 @@ import butterknife.Unbinder;
 import cn.ucai.fulisenter.R;
 import cn.ucai.fulisenter.controller.adapter.NewGoodsAdapter;
 import cn.ucai.fulisenter.controller.application.I;
+import cn.ucai.fulisenter.model.bean.ModelNewGoods;
 import cn.ucai.fulisenter.model.bean.NewGoodsBean;
 import cn.ucai.fulisenter.model.net.IModelNewGoods;
-import cn.ucai.fulisenter.model.net.ModelNewGoods;
 import cn.ucai.fulisenter.model.net.OnCompletionListener;
 import cn.ucai.fulisenter.model.utils.ConvertUtils;
-import cn.ucai.fulisenter.model.utils.L;
 
 import static cn.ucai.fulisenter.controller.application.I.ACTION_DOWNLOAD;
 import static cn.ucai.fulisenter.controller.application.I.ACTION_PULL_DOWN;
@@ -55,7 +53,7 @@ public class NewGoodsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_new_goods, container, false);
-        mModel = new ModelNewGoods();
+        mModel =  new ModelNewGoods();
         ButterKnife.bind(this,layout);
         return layout;
     }
@@ -81,9 +79,9 @@ public class NewGoodsFragment extends Fragment {
                 int lastPosition = mLayoutManager.findLastVisibleItemPosition();
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastPosition == mAdapter.getItemCount() - 1 && mAdapter.isMore()) {
                     mPageId++;
-                    L.e("main","downloadNewgoodsListstart");
+                  //  L.e("main","downloadNewgoodsListstart");
                     downloadNewgoodsList(I.ACTION_PULL_UP,mPageId);
-                    L.e("main","downloadNewgoodsListend");
+                 //   L.e("main","downloadNewgoodsListend");
                 }
             }
         });
@@ -110,24 +108,24 @@ public class NewGoodsFragment extends Fragment {
         mModel.downloadContactList(getContext(), catId, pageId, new OnCompletionListener<NewGoodsBean[]>() {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
-                L.e("main","result.length="+result.length);
+              //  L.e("main","result.length="+result.length);
                 if (result != null && result.length > 0) {
-                    Log.e("main","111");
-                    ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
-                    switch (action) {
-                        case ACTION_DOWNLOAD:
-                            mAdapter.initData(list);
-                            break;
-                        case ACTION_PULL_DOWN:
-                            mSwipeRefreshLayout.setRefreshing(false);
-                            mtvRefreshHint.setVisibility(View.GONE);
-                            mAdapter.initData(list);
-                            break;
-                        case ACTION_PULL_UP:
-                            mAdapter.addData(list);
-                            break;
+                  //  Log.e("main","111");
+                        ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
+                        switch (action) {
+                            case ACTION_DOWNLOAD:
+                                mAdapter.initData(list);
+                                break;
+                            case ACTION_PULL_DOWN:
+                                mSwipeRefreshLayout.setRefreshing(false);
+                                mtvRefreshHint.setVisibility(View.GONE);
+                                mAdapter.initData(list);
+                                break;
+                            case ACTION_PULL_UP:
+                                mAdapter.addData(list);
+                                break;
 
-                    }
+                        }
                     if (result.length<10){
                         mAdapter.setMore(false);
                     }else{
@@ -155,6 +153,10 @@ public class NewGoodsFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // unbinder.unbind();
+       // unbinder.unbind();
+    }
+
+    public void sortGoods(int sortBy) {
+        mAdapter.sortGoods(sortBy);
     }
 }
